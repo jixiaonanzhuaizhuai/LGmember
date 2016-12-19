@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:gravity="center_vertical"
+    android:background="@drawable/wel_bag"
+    >
+    
+    <TextView
+        android:id="@+id/welcom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:padding="10dp"
+        android:text="@string/welcomWords" />
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcom"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="40dp"
+        android:background="@drawable/reg_btn_bg"
+        android:text="会员登录" />
+    <Button
+        android:id="@+id/regBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/loginBtn"
+        android:layout_below="@+id/welcom"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/reg_btn_bg"
+        android:text="注册会员" />
+     <Button
+        android:id="@+id/visitorBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/regBtn"
+        android:layout_below="@+id/welcom"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/reg_btn_bg"
+        android:text="游客身份" />
+
+    
+
+    
+
+</RelativeLayout>

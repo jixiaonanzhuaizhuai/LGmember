@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">LGmember</string>
+    <string name="personal">个人资料</string>
+    <string name="activity">活动管理</string>
+    <string name="scores">我的积分</string>
+    <string name="exchange">积分兑换</string>
+    <string name="card">我的卡卷</string>
+    <string name="sign">我要签到</string>
+    <string name="messages">我的消息</string>
+    <string name="collection">收藏</string>
+    <string name="question">问题反馈</string>
+    <string name="setting">设置</string>
+    <string name="welcomWords">欢迎使用龙广会员APP，登陆享受更多权益：方便快捷管理您的积分、订单，实时的信息管理，完善的会员管理!</string>
+</resources>
