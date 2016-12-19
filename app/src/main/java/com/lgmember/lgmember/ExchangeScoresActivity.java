@@ -1,19 +1,16 @@
 package com.lgmember.lgmember;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
 
 
-public class ActivityManage extends BaseActivity implements OnClickListener {
-
+public class ExchangeScoresActivity extends BaseActivity implements OnClickListener {
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_manage);
+		setContentView(R.layout.activity_exchangescores);
 		initView();
 	}
 

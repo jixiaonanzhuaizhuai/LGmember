@@ -22,6 +22,10 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".ActivityManage"></activity>
         <activity android:name=".MyScoresActivity"></activity>
+        <activity android:name=".ExchangeScoresActivity"></activity>
+        <activity android:name=".MyCardActivity"></activity>
+        <activity android:name=".SignActivity"></activity>
+        <activity android:name=".MyMessageActivity"></activity>
     </application>
 
 </manifest>

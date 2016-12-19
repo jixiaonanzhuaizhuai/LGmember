@@ -45,11 +45,10 @@ public class MainActivity extends BaseActivity implements OnClickListener{
 			showPopupMenu(v);
 			break;
 		case R.id.messageBtn:
-			showToast("������Ϣ");
+			showToast("消息");
 			break;
 		case R.id.moreInfo:
-			Intent intent = new Intent(MainActivity.this,PersonalActivity.class);
-            startActivity(intent);
+            startIntent(PersonalActivity.class);
 			break;
 		default:
 			break;
@@ -72,9 +71,21 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                     case R.id.activity:  
                     	startIntent(ActivityManage.class);
                         return true;  
-                    case R.id.scores:  
-                    	startIntent(ActivityManage.class);
-                        return true; 
+                     case R.id.scores:
+						startIntent(MyScoresActivity.class);
+						return true;
+					case R.id.exchange:
+						startIntent(ExchangeScoresActivity.class);
+						return true;
+					case R.id.card:
+						startIntent(MyCardActivity.class);
+						return true;
+					case R.id.sign:
+						startIntent(SignActivity.class);
+						return true;
+					case R.id.messages:
+						startIntent(MyMessageActivity.class);
+						return true;
                     
                 }  
                 return false;  
