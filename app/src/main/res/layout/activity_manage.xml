@@ -8,6 +8,12 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="查看会员以往报名的活动" />
+        android:text="以往报名的活动" />
+
+    <ListView
+        android:id="@+id/ago_activity_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fastScrollEnabled="true"/>
 
 </LinearLayout>

@@ -26,6 +26,8 @@
         <activity android:name=".MyCardActivity"></activity>
         <activity android:name=".SignActivity"></activity>
         <activity android:name=".MyMessageActivity"></activity>
+        <activity android:name=".HistoryScores"></activity>
+        <activity android:name=".ScoresRuleActicity"></activity>
     </application>
 
 </manifest>
