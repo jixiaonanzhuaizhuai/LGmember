@@ -130,8 +130,16 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#cccccc" />
+
+	<com.bigkoo.convenientbanner.ConvenientBanner
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/convenientBanner"
+		android:layout_width="match_parent"
+		android:layout_height="200dp"
+		app:canLoop="true"
+	/>
 	
-	<RelativeLayout 
+	<!--<RelativeLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content">
 	    
@@ -262,5 +270,5 @@
         android:text="活动列表" />
 	    
 	</RelativeLayout>
-   
+   -->
 </LinearLayout>
