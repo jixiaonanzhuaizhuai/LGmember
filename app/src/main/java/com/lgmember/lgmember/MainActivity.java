@@ -17,13 +17,11 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 
 import java.util.ArrayList;
 
+
 public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener {
 
-	//private EditText etLoginName;
-	//private EditText etLoginPass;
-	private Button menuBtn,messageBtn,moreInfo,loginBtn,regBtn,visitorBtn;
-	//private String loginName;
-	//private String loginPass;
+
+	private Button menuBtn,messageBtn,signBtn,moreInfo;
 	private ConvenientBanner convenientBanner;//顶部广告栏控件
 	private ArrayList<Integer> localImages = new ArrayList<Integer>();
 	@Override
@@ -46,24 +44,24 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 //                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
 //                .setOnPageChangeListener(this)//监听翻页事件
 				.setOnItemClickListener(this);
-
 //        convenientBanner.setManualPageable(false);//设置不能手动影响
 
 	}
 
 	private void initView() {
-		//etLoginName = (EditText) findViewById(R.id.et_loginName);
-		//etLoginPass = (EditText) findViewById(R.id.et_loginPass);
 		menuBtn = (Button) findViewById(R.id.menuBtn);
 		messageBtn = (Button) findViewById(R.id.messageBtn);
-		moreInfo = (Button) findViewById(R.id.moreInfo);convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
+		signBtn = (Button) findViewById(R.id.signBtn);
+		moreInfo = (Button) findViewById(R.id.moreInfo);
+		convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
 		menuBtn.setOnClickListener(this);
 		messageBtn.setOnClickListener(this);
+		signBtn.setOnClickListener(this);
 		moreInfo.setOnClickListener(this);
+		localImages.add(R.mipmap.image0);
 		localImages.add(R.mipmap.image1);
 		localImages.add(R.mipmap.image2);
 		localImages.add(R.mipmap.image3);
-		localImages.add(R.mipmap.image4);
 	}
 
 	@Override
@@ -73,7 +71,10 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			showPopupMenu(v);
 			break;
 		case R.id.messageBtn:
-			showToast("消息");
+			startIntent(MyMessageActivity.class);
+			break;
+		case R.id.signBtn:
+			startIntent(SignActivity.class);
 			break;
 		case R.id.moreInfo:
             startIntent(PersonalActivity.class);
@@ -129,7 +130,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		//开始自动翻页
 		convenientBanner.startTurning(3000);
 	}
-
 	// 停止自动翻页
 	@Override
 	protected void onPause() {
@@ -138,8 +138,23 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		convenientBanner.stopTurning();
 	}
 
-	@Override
 	public void onItemClick(int position) {
-		Toast.makeText(this,"点击了第"+position+"个", Toast.LENGTH_SHORT).show();
+		switch (position) {
+			case 0:
+				Toast.makeText(this,"点击了第0个", Toast.LENGTH_SHORT).show();
+				break;
+			case 1:
+				Toast.makeText(this,"点击了第1个", Toast.LENGTH_SHORT).show();
+				break;
+			case 2:
+				Toast.makeText(this,"点击了第2个", Toast.LENGTH_SHORT).show();
+				break;
+			case 3:
+				Toast.makeText(this,"点击了第3个", Toast.LENGTH_SHORT).show();
+				break;
+			default:
+				break;
+		}
+
 	}
 }

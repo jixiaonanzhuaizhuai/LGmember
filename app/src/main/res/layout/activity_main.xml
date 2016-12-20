@@ -130,6 +130,12 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#cccccc" />
+	<TextView
+		android:id="@+id/textView2"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:text="即将参与的活动" />
 
 	<com.bigkoo.convenientbanner.ConvenientBanner
 		xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -138,6 +144,23 @@
 		android:layout_height="200dp"
 		app:canLoop="true"
 	/>
+	<TextView
+		android:id="@+id/textView3"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="right"
+		android:text="更多活动>>" />
+	<View
+		android:id="@+id/view3"
+		android:layout_width="fill_parent"
+		android:layout_height="1dp"
+		android:background="#cccccc" />
+	<TextView
+		android:id="@+id/textView4"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_horizontal"
+		android:text="推荐活动" />
 	
 	<!--<RelativeLayout
 	    android:layout_width="fill_parent"
