@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.paging.listview.PagingBaseAdapter;
+import com.paging.listview.PagingListView;
 
 import java.util.ArrayList;
 
@@ -22,8 +24,9 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 
 	private Button menuBtn,messageBtn,signBtn,moreInfo;
-	private ConvenientBanner convenientBanner;//顶部广告栏控件
+	private ConvenientBanner convenientBanner,recommend;//顶部广告栏控件
 	private ArrayList<Integer> localImages = new ArrayList<Integer>();
+	private PagingListView pagingListView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,6 +36,21 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	}
 
 	private void init() {
+
+		pagingListView.setHasMoreItems(true);
+		pagingListView.setPagingableListener(new PagingListView.Pagingable() {
+			@Override
+			public void onLoadMoreItems() {
+				if (pager < 3) {
+					new CountryAsyncTask(false).execute();
+				} else {
+					pagingListView.onFinishLoading(false, null);
+				}
+			}
+		});
+
+
+
 		convenientBanner.setPages(
 				new CBViewHolderCreator<LocalImageHolderView>() {
 
@@ -45,7 +63,18 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 //                .setOnPageChangeListener(this)//监听翻页事件
 				.setOnItemClickListener(this);
 //        convenientBanner.setManualPageable(false);//设置不能手动影响
+		recommend.setPages(
+				new CBViewHolderCreator<LocalImageHolderView>() {
 
+					public LocalImageHolderView createHolder() {
+						return new LocalImageHolderView();
+					}
+				}, localImages)
+				//设置指示器的方向
+//                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+//                .setOnPageChangeListener(this)//监听翻页事件
+				.setOnItemClickListener(this);
+//        convenientBanner.setManualPageable(false);//设置不能手动影响
 	}
 
 	private void initView() {
@@ -54,6 +83,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		signBtn = (Button) findViewById(R.id.signBtn);
 		moreInfo = (Button) findViewById(R.id.moreInfo);
 		convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
+		recommend = (ConvenientBanner) findViewById(R.id.recommend);
+		pagingListView = (PagingListView) findViewById(R.id.paging_list_view);
 		menuBtn.setOnClickListener(this);
 		messageBtn.setOnClickListener(this);
 		signBtn.setOnClickListener(this);
@@ -129,6 +160,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		super.onResume();
 		//开始自动翻页
 		convenientBanner.startTurning(3000);
+		recommend.startTurning(3000);
 	}
 	// 停止自动翻页
 	@Override
@@ -136,6 +168,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		super.onPause();
 		//停止翻页
 		convenientBanner.stopTurning();
+		recommend.stopTurning();
 	}
 
 	public void onItemClick(int position) {
