@@ -1,5 +1,8 @@
+<ScrollView
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -161,6 +164,13 @@
 		android:layout_height="wrap_content"
 		android:gravity="center_horizontal"
 		android:text="推荐活动" />
+	<com.bigkoo.convenientbanner.ConvenientBanner
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/recommend"
+		android:layout_width="match_parent"
+		android:layout_height="200dp"
+		app:canLoop="true"
+		/>
 	
 	<!--<RelativeLayout
 	    android:layout_width="fill_parent"
@@ -294,4 +304,21 @@
 	    
 	</RelativeLayout>
    -->
+	<com.maiml.library.BaseItemLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:id="@+id/baseLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:text_size="18"
+		app:text_color="@color/gray_333333"
+		app:icon_margin_left="10"
+		app:icon_text_margin="10"
+		app:margin_right="10"
+		app:item_height="50"
+		app:line_color="@color/line_d6d6d6"
+		app:right_text_size="@color/line_d6d6d6"
+		app:right_text_color="@color/gray_333333"
+		app:right_text_margin="10"/>
 </LinearLayout>
+</ScrollView>
