@@ -1,23 +1,22 @@
 package com.lgmember.lgmember;
-
-
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
-import com.paging.listview.PagingBaseAdapter;
-import com.paging.listview.PagingListView;
-
+import com.maiml.library.BaseItemLayout;
+import com.maiml.library.config.ConfigAttrs;
+import com.maiml.library.config.Mode;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener {
@@ -26,31 +25,62 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	private Button menuBtn,messageBtn,signBtn,moreInfo;
 	private ConvenientBanner convenientBanner,recommend;//顶部广告栏控件
 	private ArrayList<Integer> localImages = new ArrayList<Integer>();
-	private PagingListView pagingListView;
+	private BaseItemLayout layout;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initView();
 		init();
+
 	}
+	private void initView() {
+		menuBtn = (Button) findViewById(R.id.menuBtn);
+		messageBtn = (Button) findViewById(R.id.messageBtn);
+		signBtn = (Button) findViewById(R.id.signBtn);
+		moreInfo = (Button) findViewById(R.id.moreInfo);
+		convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
+		recommend = (ConvenientBanner) findViewById(R.id.recommend);
+		layout = (BaseItemLayout) findViewById(R.id.baseLayout);
+		menuBtn.setOnClickListener(this);
+		messageBtn.setOnClickListener(this);
+		signBtn.setOnClickListener(this);
+		moreInfo.setOnClickListener(this);
+		localImages.add(R.mipmap.image0);
+		localImages.add(R.mipmap.image1);
+		localImages.add(R.mipmap.image2);
+		localImages.add(R.mipmap.image3);
+		/*
+		listview数据
+		 */
+		List<String> valueList = new ArrayList<>();
+		valueList.add("1111111");
+		valueList.add("2222222");
+		valueList.add("3333333");
+		valueList.add("4444444");
+		valueList.add("5555555");
+		valueList.add("6666666");
+//每条活动前对应图片,数量和上面保持一致
+		List<Integer> resIdList = new ArrayList<>();
+		resIdList.add(R.mipmap.ic_launcher);
+		resIdList.add(R.mipmap.ic_launcher);
+		resIdList.add(R.mipmap.ic_launcher);
+		resIdList.add(R.mipmap.ic_launcher);
+		resIdList.add(R.mipmap.ic_launcher);
+		resIdList.add(R.mipmap.ic_launcher);
 
+		ConfigAttrs attrs  =new ConfigAttrs();//把全部参数的配置，委托给 ConfigAttrs 类处理。
+		//参数 使用链式方式配置
+		attrs.setValueList(valueList)//文字list
+		.setResIdList(resIdList)//图片list
+		.setIconWidth(24)//图片宽度和高度
+		.setIconHeight(24)
+				.setItemMode(Mode.NORMAL);
+		layout.setConfigAttrs(attrs).create();
+
+	}
 	private void init() {
-
-		pagingListView.setHasMoreItems(true);
-		pagingListView.setPagingableListener(new PagingListView.Pagingable() {
-			@Override
-			public void onLoadMoreItems() {
-				if (pager < 3) {
-					new CountryAsyncTask(false).execute();
-				} else {
-					pagingListView.onFinishLoading(false, null);
-				}
-			}
-		});
-
-
-
 		convenientBanner.setPages(
 				new CBViewHolderCreator<LocalImageHolderView>() {
 
@@ -75,26 +105,16 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 //                .setOnPageChangeListener(this)//监听翻页事件
 				.setOnItemClickListener(this);
 //        convenientBanner.setManualPageable(false);//设置不能手动影响
-	}
 
-	private void initView() {
-		menuBtn = (Button) findViewById(R.id.menuBtn);
-		messageBtn = (Button) findViewById(R.id.messageBtn);
-		signBtn = (Button) findViewById(R.id.signBtn);
-		moreInfo = (Button) findViewById(R.id.moreInfo);
-		convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
-		recommend = (ConvenientBanner) findViewById(R.id.recommend);
-		pagingListView = (PagingListView) findViewById(R.id.paging_list_view);
-		menuBtn.setOnClickListener(this);
-		messageBtn.setOnClickListener(this);
-		signBtn.setOnClickListener(this);
-		moreInfo.setOnClickListener(this);
-		localImages.add(R.mipmap.image0);
-		localImages.add(R.mipmap.image1);
-		localImages.add(R.mipmap.image2);
-		localImages.add(R.mipmap.image3);
+		//点击事件
+		layout.setOnBaseItemClick(new BaseItemLayout.OnBaseItemClick() {
+			@Override
+			public void onItemClick(int position) {
+				Toast.makeText(MainActivity.this,"----- position = " + position,Toast.LENGTH_SHORT).show();
+				Log.e("msg","----- position = " + position);
+			}
+		});
 	}
-
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -114,8 +134,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			break;
 		}
 	}
-	
-	private void showPopupMenu(View view) {  
+	private void showPopupMenu(View view) {
 		  
         PopupMenu popup = new PopupMenu(MainActivity.this, view, Gravity.CENTER_HORIZONTAL);  
   
@@ -188,6 +207,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			default:
 				break;
 		}
-
 	}
+
 }
