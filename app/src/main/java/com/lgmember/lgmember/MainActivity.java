@@ -1,4 +1,5 @@
 package com.lgmember.lgmember;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -8,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -23,9 +25,14 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 
 
 	private Button menuBtn,messageBtn,signBtn,moreInfo;
-	private ConvenientBanner convenientBanner,recommend;//顶部广告栏控件
-	private ArrayList<Integer> localImages = new ArrayList<Integer>();
+    private TextView sexTxt,ageTxt,nationTxt,birthdayTxt,editInfo;
+
+	private ConvenientBanner convenientBanner,recommendBanner;//轮播控件
+	private ArrayList<Integer> immediatelyImages = new ArrayList<Integer>();
+	private ArrayList<Integer> recommendImages = new ArrayList<Integer>();
+
 	private BaseItemLayout layout;
+    private boolean isButton = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,35 +47,45 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		messageBtn = (Button) findViewById(R.id.messageBtn);
 		signBtn = (Button) findViewById(R.id.signBtn);
 		moreInfo = (Button) findViewById(R.id.moreInfo);
-		convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
-		recommend = (ConvenientBanner) findViewById(R.id.recommend);
+        sexTxt = (TextView)findViewById(R.id.sexTxt);
+        ageTxt = (TextView)findViewById(R.id.ageTxt);
+        nationTxt = (TextView)findViewById(R.id.nationTxt);
+        birthdayTxt = (TextView)findViewById(R.id.birthdayTxt);
+		editInfo = (TextView)findViewById(R.id.editInfo);
+        convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
+		recommendBanner = (ConvenientBanner) findViewById(R.id.recommendBanner);
 		layout = (BaseItemLayout) findViewById(R.id.baseLayout);
 		menuBtn.setOnClickListener(this);
 		messageBtn.setOnClickListener(this);
 		signBtn.setOnClickListener(this);
+		editInfo.setOnClickListener(this);
 		moreInfo.setOnClickListener(this);
-		localImages.add(R.mipmap.image0);
-		localImages.add(R.mipmap.image1);
-		localImages.add(R.mipmap.image2);
-		localImages.add(R.mipmap.image3);
+		immediatelyImages.add(R.mipmap.image0);
+		immediatelyImages.add(R.mipmap.image1);
+		immediatelyImages.add(R.mipmap.image2);
+		immediatelyImages.add(R.mipmap.image3);
+		recommendImages.add(R.mipmap.recommend0);
+		recommendImages.add(R.mipmap.recommend1);
+		recommendImages.add(R.mipmap.recommend2);
+		recommendImages.add(R.mipmap.recommend3);
 		/*
 		listview数据
 		 */
 		List<String> valueList = new ArrayList<>();
-		valueList.add("1111111");
-		valueList.add("2222222");
-		valueList.add("3333333");
-		valueList.add("4444444");
-		valueList.add("5555555");
-		valueList.add("6666666");
+		valueList.add("汽车消费类活动");
+		valueList.add("参观类活动");
+		valueList.add("节日类活动");
+		valueList.add("表演类活动");
+		valueList.add("旅游类活动");
+		valueList.add("收听类活动");
 //每条活动前对应图片,数量和上面保持一致
 		List<Integer> resIdList = new ArrayList<>();
-		resIdList.add(R.mipmap.ic_launcher);
-		resIdList.add(R.mipmap.ic_launcher);
-		resIdList.add(R.mipmap.ic_launcher);
-		resIdList.add(R.mipmap.ic_launcher);
-		resIdList.add(R.mipmap.ic_launcher);
-		resIdList.add(R.mipmap.ic_launcher);
+		resIdList.add(R.mipmap.qiche);
+		resIdList.add(R.mipmap.canguan);
+		resIdList.add(R.mipmap.jieri);
+		resIdList.add(R.mipmap.biaoyan);
+		resIdList.add(R.mipmap.qiche);
+		resIdList.add(R.mipmap.canguan);
 
 		ConfigAttrs attrs  =new ConfigAttrs();//把全部参数的配置，委托给 ConfigAttrs 类处理。
 		//参数 使用链式方式配置
@@ -83,38 +100,30 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	private void init() {
 		convenientBanner.setPages(
 				new CBViewHolderCreator<LocalImageHolderView>() {
-
 					public LocalImageHolderView createHolder() {
 						return new LocalImageHolderView();
 					}
-				}, localImages)
-				//设置指示器的方向
-//                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+				}, immediatelyImages)
+//                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)//设置指示器的方向
 //                .setOnPageChangeListener(this)//监听翻页事件
-				.setOnItemClickListener(this);
-//        convenientBanner.setManualPageable(false);//设置不能手动影响
-		recommend.setPages(
+				  .setOnItemClickListener(this);
+//      convenientBanner.setManualPageable(false);//设置不能手动影响
+		recommendBanner.setPages(
 				new CBViewHolderCreator<LocalImageHolderView>() {
-
 					public LocalImageHolderView createHolder() {
 						return new LocalImageHolderView();
 					}
-				}, localImages)
-				//设置指示器的方向
-//                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
-//                .setOnPageChangeListener(this)//监听翻页事件
-				.setOnItemClickListener(this);
-//        convenientBanner.setManualPageable(false);//设置不能手动影响
+				}, recommendImages).setOnItemClickListener(this);
 
-		//点击事件
+		//BaseItemLayout点击事件
 		layout.setOnBaseItemClick(new BaseItemLayout.OnBaseItemClick() {
 			@Override
 			public void onItemClick(int position) {
 				Toast.makeText(MainActivity.this,"----- position = " + position,Toast.LENGTH_SHORT).show();
-				Log.e("msg","----- position = " + position);
 			}
 		});
 	}
+	//这个是菜单、信息、签到、编辑、更多信息点击事件
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -127,13 +136,31 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		case R.id.signBtn:
 			startIntent(SignActivity.class);
 			break;
+		case R.id.editInfo:
+			startIntent(PersonalActivity.class);
+			break;
 		case R.id.moreInfo:
-            startIntent(PersonalActivity.class);
+            if(isButton){
+                sexTxt.setVisibility(View.VISIBLE);
+                ageTxt.setVisibility(View.VISIBLE);
+                nationTxt.setVisibility(View.VISIBLE);
+                birthdayTxt.setVisibility(View.VISIBLE);
+                moreInfo.setText("隐藏信息");
+                isButton = false;
+            }else {
+                sexTxt.setVisibility(View.GONE);
+                ageTxt.setVisibility(View.GONE);
+                nationTxt.setVisibility(View.GONE);
+                birthdayTxt.setVisibility(View.GONE);
+                moreInfo.setText("更多信息");
+                isButton = true;
+            }
 			break;
 		default:
 			break;
 		}
 	}
+	//菜单按钮中的各个子页面点击事件
 	private void showPopupMenu(View view) {
 		  
         PopupMenu popup = new PopupMenu(MainActivity.this, view, Gravity.CENTER_HORIZONTAL);  
@@ -179,7 +206,7 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		super.onResume();
 		//开始自动翻页
 		convenientBanner.startTurning(3000);
-		recommend.startTurning(3000);
+		recommendBanner.startTurning(3000);
 	}
 	// 停止自动翻页
 	@Override
@@ -187,22 +214,34 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		super.onPause();
 		//停止翻页
 		convenientBanner.stopTurning();
-		recommend.stopTurning();
+		recommendBanner.stopTurning();
 	}
-
 	public void onItemClick(int position) {
 		switch (position) {
 			case 0:
-				Toast.makeText(this,"点击了第0个", Toast.LENGTH_SHORT).show();
+				Intent intent0 = new Intent();
+				//Intent传递参数
+				intent0.putExtra("position",  String.valueOf(position));
+				intent0.setClass(MainActivity.this, ActivityDetailActivity.class);
+				startActivity(intent0);
 				break;
 			case 1:
-				Toast.makeText(this,"点击了第1个", Toast.LENGTH_SHORT).show();
+				Intent intent1 = new Intent();
+				intent1.putExtra("position",String.valueOf(position));
+				intent1.setClass(MainActivity.this, ActivityDetailActivity.class);
+				startActivity(intent1);
 				break;
 			case 2:
-				Toast.makeText(this,"点击了第2个", Toast.LENGTH_SHORT).show();
+				Intent intent2 = new Intent();
+				intent2.putExtra("position", String.valueOf(position));
+				intent2.setClass(MainActivity.this, ActivityDetailActivity.class);
+				startActivity(intent2);
 				break;
 			case 3:
-				Toast.makeText(this,"点击了第3个", Toast.LENGTH_SHORT).show();
+				Intent intent3 = new Intent();
+				intent3.putExtra("position", String.valueOf(position));
+				intent3.setClass(MainActivity.this, ActivityDetailActivity.class);
+				startActivity(intent3);
 				break;
 			default:
 				break;

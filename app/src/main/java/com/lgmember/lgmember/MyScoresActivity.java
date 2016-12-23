@@ -24,7 +24,6 @@ import android.widget.Toast;
 			initTab();
 
 		}
-
 		/**
 		 * 初始化数据
 		 */
@@ -34,7 +33,6 @@ import android.widget.Toast;
 			rb_tab_historyscores.setOnClickListener(this);
 			rb_tab_scoresrule.setOnClickListener(this);
 		}
-
 		/**
 		 * 初始化Tab
 		 */
@@ -45,7 +43,6 @@ import android.widget.Toast;
 
 			tabHost.addTab(tabHost.newTabSpec("rule").setIndicator("rule")
 					.setContent(new Intent(this, ScoresRuleActicity.class)));
-
 		}
 
 		/**
