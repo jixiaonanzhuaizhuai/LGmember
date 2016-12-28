@@ -1,13 +1,11 @@
 package com.lgmember.lgmember;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,11 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends BaseActivity implements OnClickListener, OnItemClickListener {
+public class MainActivity extends BaseActivity implements OnClickListener{
 
 
 	private Button menuBtn,messageBtn,signBtn,moreInfo;
-    private TextView sexTxt,ageTxt,nationTxt,birthdayTxt,editInfo;
+    private TextView sexTxt,ageTxt,nationTxt,birthdayTxt,editInfo,moreactivity,rmoreactivity;
 
 	private ConvenientBanner convenientBanner,recommendBanner;//轮播控件
 	private ArrayList<Integer> immediatelyImages = new ArrayList<Integer>();
@@ -52,6 +50,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
         nationTxt = (TextView)findViewById(R.id.nationTxt);
         birthdayTxt = (TextView)findViewById(R.id.birthdayTxt);
 		editInfo = (TextView)findViewById(R.id.editInfo);
+		moreactivity = (TextView)findViewById(R.id.moreactivity);
+		rmoreactivity = (TextView)findViewById(R.id.rmoreactivity);
         convenientBanner = (ConvenientBanner) findViewById(R.id.convenientBanner);
 		recommendBanner = (ConvenientBanner) findViewById(R.id.recommendBanner);
 		layout = (BaseItemLayout) findViewById(R.id.baseLayout);
@@ -60,14 +60,17 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		signBtn.setOnClickListener(this);
 		editInfo.setOnClickListener(this);
 		moreInfo.setOnClickListener(this);
+		moreactivity.setOnClickListener(this);
+		rmoreactivity.setOnClickListener(this);
+
 		immediatelyImages.add(R.mipmap.image0);
 		immediatelyImages.add(R.mipmap.image1);
 		immediatelyImages.add(R.mipmap.image2);
 		immediatelyImages.add(R.mipmap.image3);
-		recommendImages.add(R.mipmap.recommend0);
-		recommendImages.add(R.mipmap.recommend1);
-		recommendImages.add(R.mipmap.recommend2);
-		recommendImages.add(R.mipmap.recommend3);
+		recommendImages.add(R.mipmap.image4);
+		recommendImages.add(R.mipmap.image5);
+		recommendImages.add(R.mipmap.image6);
+		recommendImages.add(R.mipmap.image7);
 		/*
 		listview数据
 		 */
@@ -90,10 +93,11 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		ConfigAttrs attrs  =new ConfigAttrs();//把全部参数的配置，委托给 ConfigAttrs 类处理。
 		//参数 使用链式方式配置
 		attrs.setValueList(valueList)//文字list
-		.setResIdList(resIdList)//图片list
-		.setIconWidth(24)//图片宽度和高度
-		.setIconHeight(24)
-				.setItemMode(Mode.NORMAL);
+				.setItemMarginTop(10)//设置 全部item的间距
+					.setResIdList(resIdList)//图片list
+						.setIconWidth(24)//图片宽度和高度
+							.setIconHeight(24)
+								.setItemMode(Mode.NORMAL);
 		layout.setConfigAttrs(attrs).create();
 
 	}
@@ -103,23 +107,114 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 					public LocalImageHolderView createHolder() {
 						return new LocalImageHolderView();
 					}
-				}, immediatelyImages)
+				}, immediatelyImages);
 //                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)//设置指示器的方向
 //                .setOnPageChangeListener(this)//监听翻页事件
-				  .setOnItemClickListener(this);
+		convenientBanner.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(int position) {
+				switch (position) {
+					case 0:
+						Intent intent0 = new Intent();
+						//Intent传递参数
+						intent0.putExtra("position",  String.valueOf(position));
+						intent0.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent0);
+						break;
+					case 1:
+						Intent intent1 = new Intent();
+						intent1.putExtra("position",String.valueOf(position));
+						intent1.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent1);
+						break;
+					case 2:
+						Intent intent2 = new Intent();
+						intent2.putExtra("position", String.valueOf(position));
+						intent2.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent2);
+						break;
+					case 3:
+						Intent intent3 = new Intent();
+						intent3.putExtra("position", String.valueOf(position));
+						intent3.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent3);
+						break;
+					default:
+						break;
+				}
+			}
+		});
+
 //      convenientBanner.setManualPageable(false);//设置不能手动影响
 		recommendBanner.setPages(
 				new CBViewHolderCreator<LocalImageHolderView>() {
 					public LocalImageHolderView createHolder() {
 						return new LocalImageHolderView();
 					}
-				}, recommendImages).setOnItemClickListener(this);
-
+				}, recommendImages);
+		recommendBanner.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(int position) {
+				switch (position) {
+					case 0:
+						position +=4;
+						Intent intent0 = new Intent();
+						//Intent传递参数
+						intent0.putExtra("position",  String.valueOf(position));
+						intent0.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent0);
+						break;
+					case 1:
+						position +=4;
+						Intent intent1 = new Intent();
+						intent1.putExtra("position",String.valueOf(position));
+						intent1.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent1);
+						break;
+					case 2:
+						Intent intent2 = new Intent();
+						position +=4;
+						intent2.putExtra("position", String.valueOf(position));
+						intent2.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent2);
+						break;
+					case 3:
+						Intent intent3 = new Intent();
+						position +=4;
+						intent3.putExtra("position", String.valueOf(position));
+						intent3.setClass(MainActivity.this, ActivityDetailActivity.class);
+						startActivity(intent3);
+						break;
+					default:
+						break;
+				}
+			}
+		});
 		//BaseItemLayout点击事件
 		layout.setOnBaseItemClick(new BaseItemLayout.OnBaseItemClick() {
 			@Override
 			public void onItemClick(int position) {
-				Toast.makeText(MainActivity.this,"----- position = " + position,Toast.LENGTH_SHORT).show();
+				switch (position){
+					case 0:
+						startIntent(ActivityListActivity.class);
+						break;
+					case 1:
+						startIntent(ActivityListActivity.class);
+						break;
+					case 2:
+						startIntent(ActivityListActivity.class);
+						break;
+					case 3:
+						startIntent(ActivityListActivity.class);
+						break;
+					case 4:
+						startIntent(ActivityListActivity.class);
+						break;
+					case 5:
+						startIntent(ActivityListActivity.class);
+						break;
+
+				}
 			}
 		});
 	}
@@ -137,9 +232,15 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 			startIntent(SignActivity.class);
 			break;
 		case R.id.editInfo:
-			startIntent(PersonalActivity.class);
+			startIntent(EditPersonalActivity.class);
 			break;
-		case R.id.moreInfo:
+		case R.id.moreactivity:
+			startIntent(ActivityListActivity.class);
+			break;
+		case R.id.rmoreactivity:
+				startIntent(ActivityListActivity.class);
+				break;
+	case R.id.moreInfo:
             if(isButton){
                 sexTxt.setVisibility(View.VISIBLE);
                 ageTxt.setVisibility(View.VISIBLE);
@@ -205,8 +306,8 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 	protected void onResume() {
 		super.onResume();
 		//开始自动翻页
-		convenientBanner.startTurning(3000);
-		recommendBanner.startTurning(3000);
+		convenientBanner.startTurning(1500);
+		recommendBanner.startTurning(2000);
 	}
 	// 停止自动翻页
 	@Override
@@ -215,37 +316,6 @@ public class MainActivity extends BaseActivity implements OnClickListener, OnIte
 		//停止翻页
 		convenientBanner.stopTurning();
 		recommendBanner.stopTurning();
-	}
-	public void onItemClick(int position) {
-		switch (position) {
-			case 0:
-				Intent intent0 = new Intent();
-				//Intent传递参数
-				intent0.putExtra("position",  String.valueOf(position));
-				intent0.setClass(MainActivity.this, ActivityDetailActivity.class);
-				startActivity(intent0);
-				break;
-			case 1:
-				Intent intent1 = new Intent();
-				intent1.putExtra("position",String.valueOf(position));
-				intent1.setClass(MainActivity.this, ActivityDetailActivity.class);
-				startActivity(intent1);
-				break;
-			case 2:
-				Intent intent2 = new Intent();
-				intent2.putExtra("position", String.valueOf(position));
-				intent2.setClass(MainActivity.this, ActivityDetailActivity.class);
-				startActivity(intent2);
-				break;
-			case 3:
-				Intent intent3 = new Intent();
-				intent3.putExtra("position", String.valueOf(position));
-				intent3.setClass(MainActivity.this, ActivityDetailActivity.class);
-				startActivity(intent3);
-				break;
-			default:
-				break;
-		}
 	}
 
 }

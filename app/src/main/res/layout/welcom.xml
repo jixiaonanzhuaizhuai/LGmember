@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcom"
         android:layout_marginTop="25dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:background="@drawable/reg_btn_bg"
         android:text="会员登录" />
     <Button
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/loginBtn"
         android:layout_below="@+id/welcom"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="23dp"
         android:background="@drawable/reg_btn_bg"
         android:text="注册会员" />
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/regBtn"
         android:layout_below="@+id/welcom"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="23dp"
         android:background="@drawable/reg_btn_bg"
         android:text="游客身份" />

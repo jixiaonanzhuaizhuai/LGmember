@@ -10,10 +10,16 @@
         android:id="@+id/imageView1" />
 
     <TextView
-        android:text="这是活动详情页面"
+        android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/title" />
+
+    <TextView
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/content" />
 
 
 </LinearLayout>

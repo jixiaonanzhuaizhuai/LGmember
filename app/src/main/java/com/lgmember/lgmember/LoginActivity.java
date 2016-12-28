@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class LoginActivity extends BaseActivity implements OnClickListener {
 	
-	private Button loginBtn,regBtn,visitorBtn;
-	//private String loginName;
-	//private String loginPass;
+	private Button loginBtn;
+	private TextView registerTxt,forgetPassTxt;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,32 +21,26 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void initView() {
-		//etLoginName = (EditText) findViewById(R.id.et_loginName);
-		//etLoginPass = (EditText) findViewById(R.id.et_loginPass);
-		/*loginBtn = (Button) findViewById(R.id.loginBtn);
-		regBtn = (Button) findViewById(R.id.regBtn);
-		visitorBtn = (Button) findViewById(R.id.visitorBtn);
+		loginBtn = (Button) findViewById(R.id.loginBtn);
+		registerTxt = (TextView)findViewById(R.id.registerTxt);
+		forgetPassTxt = (TextView)findViewById(R.id.forgetPassTxt);
 		loginBtn.setOnClickListener(this);
-		regBtn.setOnClickListener(this);
-		visitorBtn.setOnClickListener(this);*/
-		
+		registerTxt.setOnClickListener(this);
+		forgetPassTxt.setOnClickListener(this);
+
 	}
-	
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.loginBtn:
-			showToast("登录按钮");
+			startIntent(MainActivity.class);
 			break;
-		case R.id.regBtn:
-			Intent intentReg = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intentReg);
+		case R.id.registerTxt:
+			startIntent(RegisterActivity.class);
 			break;
-		case R.id.visitorBtn:
-			Intent intentVis = new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intentVis);
-			break;
+			case R.id.forgetPassTxt:
+				showToast("我忘记密码了了了！！！");
 		default:
 			break;
 		}
