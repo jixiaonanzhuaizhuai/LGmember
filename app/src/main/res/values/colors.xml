@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="main_lan">#0789cc</color>
+    <color name="transparent_background_button">#11000000</color>
+    <color name="transparent_background">#ffffff</color>
+    <color name="recorder_bg">#F4511E</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>

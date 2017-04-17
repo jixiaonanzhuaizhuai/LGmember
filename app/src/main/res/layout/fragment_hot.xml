@@ -2,13 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/plum" >
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.lgmember.view.TopBarView
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:titleText="活动管理"
+        custom:titleSize="6sp"
+        custom:titleColor="#FFFFFF"
+        custom:leftBtn="@drawable/back_page"/>
 
-    <ListView
-        android:id="@+id/listview1"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ListView>
-    
+        <LinearLayout
+            android:id="@+id/ll_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#88000000"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+            <ProgressBar
+                android:id="@+id/progressBar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/tv_loading_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正在拼命加载"/>
+        </LinearLayout>
+        <ListView
+            android:id="@+id/lv_hot_activity_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </RelativeLayout>
+
 
 </LinearLayout>
+

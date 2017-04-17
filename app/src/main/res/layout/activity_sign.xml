@@ -1,65 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@android:id/tabhost"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/realtabcontent"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical" >
-        <LinearLayout
-            android:id="@+id/console_line_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+        android:layout_height="0dip"
+        android:layout_weight="1" />
 
-            <RadioGroup
-                android:id="@+id/main_tab_group"
-                android:background="#ffffff"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <RadioButton
-                    android:id="@+id/rb_tab_activitysign"
-                    android:background="#00D4A0"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:checked="true"
-                    android:textSize="16sp"
-                    android:button="@null"
-                    android:text="活动签到" />
-
-                <RadioButton
-                    android:id="@+id/rb_tab_programsign"
-                    android:padding="10dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:button="@null"
-                    android:textSize="16sp"
-                    android:text="节目签到" />
-
-            </RadioGroup>
-        </LinearLayout>
+    <android.support.v4.app.FragmentTabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/manage_tab_item_bg">
 
         <FrameLayout
             android:id="@android:id/tabcontent"
-            android:layout_width="fill_parent"
-            android:layout_height="0.0dip"
-            android:layout_weight="1.0" />
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.0"
-            android:visibility="gone" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+    </android.support.v4.app.FragmentTabHost>
 
-    </LinearLayout>
-</TabHost>
+</LinearLayout>

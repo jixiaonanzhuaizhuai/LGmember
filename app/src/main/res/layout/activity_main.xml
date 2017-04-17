@@ -64,9 +64,7 @@
             android:scaleType="centerInside"
             android:layout_width="100dip"
             android:layout_height="100dip"
-            android:layout_centerVertical="true"
-            android:src="@drawable/touxiang" />
-	    
+            android:layout_centerVertical="true"/>
 	    <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -74,15 +72,27 @@
         android:layout_toRightOf="@+id/touxiang"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:text="姓名：张三" />
+        android:text="姓名: " />
+		<TextView
+			android:id="@+id/tv_name"
+			android:layout_toRightOf="@+id/name"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
 	    <TextView
         android:id="@+id/card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/name"
+        android:layout_toRightOf="@+id/tv_name"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:text="卡号：0101001" />
+        android:text="卡号：" />
+		<TextView
+			android:id="@+id/tv_card_no"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/card"/>
 
 	    <TextView
 	        android:id="@+id/scores"
@@ -92,17 +102,31 @@
 	        android:layout_toRightOf="@+id/touxiang"
 	        android:layout_marginLeft="20dp"
         	android:layout_marginTop="10dp"
-	        android:text="积分：88" />
+	        android:text="积分：" />
+		<TextView
+			android:id="@+id/tv_point"
+			android:layout_below="@id/tv_name"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/scores"/>
 	    
 	    <TextView
 	        android:id="@+id/grades"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_below="@+id/card"
-	        android:layout_toRightOf="@+id/name"
+	        android:layout_toRightOf="@+id/tv_point"
 	        android:layout_marginLeft="20dp"
         	android:layout_marginTop="10dp"
-	        android:text="等级：中" />
+	        android:text="等级：" />
+		<TextView
+			android:id="@+id/tv_level"
+			android:layout_below="@id/tv_card_no"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/grades"/>
 		<TextView
 			android:id="@+id/sexTxt"
 			android:layout_width="wrap_content"
@@ -111,7 +135,15 @@
 			android:layout_toRightOf="@+id/touxiang"
 			android:layout_marginLeft="20dp"
 			android:layout_marginTop="10dp"
-			android:text="性别：女"
+			android:text="性别: "
+			android:visibility="gone"/>
+		<TextView
+			android:id="@+id/tv_gender"
+			android:layout_below="@+id/tv_point"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/sexTxt"
 			android:visibility="gone"/>
 		<TextView
 			android:id="@+id/ageTxt"
@@ -119,10 +151,19 @@
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/grades"
 			android:layout_toRightOf="@+id/sexTxt"
-			android:layout_marginLeft="20dp"
+			android:layout_marginLeft="40dp"
 			android:layout_marginTop="10dp"
-			android:text="年龄：18"
+			android:text="年龄："
 			android:visibility="gone"/>
+		<TextView
+			android:id="@+id/tv_age"
+			android:layout_below="@+id/tv_level"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/ageTxt"
+			android:visibility="gone"/>
+
 		<TextView
 			android:id="@+id/nationTxt"
 			android:layout_width="wrap_content"
@@ -131,17 +172,33 @@
 			android:layout_toRightOf="@+id/touxiang"
 			android:layout_marginLeft="20dp"
 			android:layout_marginTop="10dp"
-			android:text="民族：汉"
+			android:text="民族："
+			android:visibility="gone"/>
+		<TextView
+			android:id="@+id/tv_nation"
+			android:layout_below="@+id/tv_gender"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/nationTxt"
 			android:visibility="gone"/>
 		<TextView
 			android:id="@+id/birthdayTxt"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/ageTxt"
-			android:layout_toRightOf="@+id/nationTxt"
+			android:layout_toRightOf="@+id/tv_nation"
 			android:layout_marginLeft="20dp"
 			android:layout_marginTop="10dp"
-			android:text="生日：2016/08/08"
+			android:text="生日："
+			android:visibility="gone"/>
+		<TextView
+			android:id="@+id/tv_birthday"
+			android:layout_below="@+id/tv_age"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/birthdayTxt"
 			android:visibility="gone"/>
 
 	    <Button
@@ -162,8 +219,6 @@
 	        android:layout_marginRight="10dp"
 	        android:layout_marginLeft="30dp"
 	        android:text="编辑" />
-	    
-	    
 	</RelativeLayout>
 	
 	<View
@@ -194,6 +249,7 @@
 		android:layout_height="wrap_content"
 		android:gravity="right"
 		android:textSize="18sp"
+		android:padding="5dp"
 		android:text="更多活动>>" />
 	<View
 		android:id="@+id/view3"
@@ -222,6 +278,7 @@
 		android:layout_height="wrap_content"
 		android:textSize="18sp"
 		android:gravity="right"
+		android:padding="5dp"
 		android:text="更多活动>>" />
 	<View
 		android:id="@+id/view4"

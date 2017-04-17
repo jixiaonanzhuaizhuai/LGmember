@@ -1,41 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.lgmember.lgmember">
+    package="com.lgmember.activity">
+
+    <!-- iBeancon功能所需权限 -->;
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- 个推3.0电子围栏功能所需权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+   <!-- 录音有关的权限-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo1"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name="com.lgmember.app.App"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomActivity">
+        <activity android:name="com.lgmember.activity.WelcomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PersonalActivity"></activity>
-        <activity android:name=".BaseActivity"></activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ActivityManage"></activity>
-        <activity android:name=".MyScoresActivity"></activity>
-        <activity android:name=".ExchangeScoresActivity"></activity>
-        <activity android:name=".MyCardActivity"></activity>
-        <activity android:name=".SignActivity"></activity>
-        <activity android:name=".MyMessageActivity"></activity>
-        <activity android:name=".HistoryScores"></activity>
-        <activity android:name=".ScoresRuleActicity"></activity>
-        <activity android:name=".ExchangeAllActivity"></activity>
-        <activity android:name=".ExchangeSelectActivity"></activity>
-        <activity android:name=".ActivitySignActivity"></activity>
-        <activity android:name=".ProgramSignActivity"></activity>
-        <activity android:name=".ActivityDetailActivity"></activity>
-        <activity android:name=".ActivityListActivity"></activity>
-        <activity android:name=".EditPersonalActivity"></activity>
+        <!--<activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>-->
+        <activity android:name="com.lgmember.activity.person.PersonalActivity"></activity>
+        <activity android:name="com.lgmember.activity.BaseActivity"></activity>
+        <activity android:name="com.lgmember.activity.LoginActivity"></activity>
+        <activity android:name="com.lgmember.activity.RegisterActivity"></activity>
+        <activity android:name="com.lgmember.activity.MainActivity"></activity>
+        <activity android:name="com.lgmember.activity.project.ProjectMessageManageActivity"></activity>
+        <activity android:name="com.lgmember.activity.score.MyScoresActivity"></activity>
+        <activity android:name="com.lgmember.activity.score.ExchangeScoresActivity"></activity>
+        <activity android:name="com.lgmember.activity.card.MyCardActivity"></activity>
+        <activity android:name="com.lgmember.activity.sign.SignActivity"></activity>
+        <activity android:name="com.lgmember.activity.message.MyMessageActivity"></activity>
+        <activity android:name="com.lgmember.activity.score.HistoryScoresActivity"></activity>
+        <activity android:name="com.lgmember.activity.score.ScoresRuleActicity"></activity>
+        <activity android:name="com.lgmember.activity.score.ExchangeAllActivity"></activity>
+        <activity android:name="com.lgmember.activity.score.ExchangeSelectActivity"></activity>
+        <activity android:name="com.lgmember.activity.sign.ProgramSignActivity"></activity>
+        <activity android:name="com.lgmember.activity.project.ProjectMessageDetailActivity"></activity>
+        <activity android:name="com.lgmember.activity.person.EditPersonalActivity"></activity>
+        <activity android:name="com.lgmember.activity.person.MessageCodeActivity"></activity>
+        <activity android:name="com.lgmember.activity.person.CertificationActivity"></activity>
+        <activity android:name=".person.PwdCodeActivity"></activity>
+        <activity android:name=".person.NewPwdActivity"></activity>
+        <activity android:name=".score.ExchangeGiftDetailActivity"></activity>
+        <activity android:name=".feedback.ReportProblemActivity"></activity>
+        <activity android:name=".setting.SettingActivity"></activity>
+        <activity android:name=".collection.CollectionActivity"></activity>
+        <activity android:name=".card.CardDetailActivity"></activity>
+        <activity android:name=".message.MessageDetailActivity"></activity>
+        <activity android:name=".person.ModifyPwdActivity"></activity>
+        <activity android:name=".score.ExchangeGiftInfoActivity"></activity>
+        <activity android:name=".sign.ActivitySignActivity"></activity>
+        <activity android:name=".person.PersonalAllActivity"></activity>
+        <activity android:name=".sign.SignListActivity"></activity>
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your Project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
+        <service android:name="com.lgmember.service.DemoIntentService"/>
 
     </application>
 
